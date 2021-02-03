@@ -4,4 +4,8 @@
     <string name="login_btn">ВОЙТИ</string>
     <string name="password_hint">Введите пароль</string>
     <string name="authorization">Авторизация</string>
+    <string name="please_wait">Пожалуйста подождите....</string>
+    <string name="loading_data">Загрузка данных</string>
+    <string name="authorisation_Error">Ошибка авторазации</string>
+    <string name="falien_connect">Ошибка соединенеия с сервером</string>
 </resources>
