@@ -8,4 +8,6 @@
     <string name="loading_data">Загрузка данных</string>
     <string name="authorisation_Error">Ошибка авторазации</string>
     <string name="falien_connect">Ошибка соединенеия с сервером</string>
+    <string name="contact">Контактов:</string>
+    <string name="_0">0</string>
 </resources>
