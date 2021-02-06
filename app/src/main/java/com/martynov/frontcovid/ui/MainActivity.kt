@@ -13,26 +13,24 @@ import com.martynov.frontcovid.API_SHARED_FILE
 import com.martynov.frontcovid.AUTHENTICATED_SHARED_KEY
 import com.martynov.frontcovid.App
 import com.martynov.frontcovid.R
-import com.martynov.frontcovid.databinding.ActivityMainBinding
 import com.martynov.frontcovid.dto.UserRequest
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+
     private var dialog: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         setSupportActionBar(findViewById<Toolbar>(R.id.toolbar))
         supportActionBar!!.setSubtitle(R.string.authorization)
         if (isAuthenticated()) {
             navigateToFeed()
             return
         }
-        binding.btnLogin.setOnClickListener {
+        btn_login.setOnClickListener {
             lifecycleScope.launch {
                 dialog = ProgressDialog(this@MainActivity).apply {
                     setMessage(getString(R.string.please_wait))
@@ -40,8 +38,8 @@ class MainActivity : AppCompatActivity() {
                     show()
                     setCancelable(false)
                 }
-                val username = binding.loginText.text?.toString().orEmpty()
-                val password = binding.passwordText.text?.toString().orEmpty()
+                val username =login_text.text?.toString().orEmpty()
+                val password = password_text.text?.toString().orEmpty()
                 try {
                     val loadUser = App.repository.authenticate(UserRequest(password, username))
                     dialog?.dismiss()

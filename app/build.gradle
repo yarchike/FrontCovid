@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -24,6 +25,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -31,10 +33,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    viewBinding {
-        enabled = true
+    androidExtensions {
+        experimental = true
     }
+
 }
+
 
 dependencies {
 
@@ -53,4 +57,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
     implementation("com.squareup.okhttp3:logging-interceptor:4.8.0")
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'com.xwray:groupie:2.8.0'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.8.0'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
