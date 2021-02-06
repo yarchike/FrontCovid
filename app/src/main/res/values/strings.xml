@@ -10,4 +10,7 @@
     <string name="falien_connect">Ошибка соединенеия с сервером</string>
     <string name="contact">Контактов:</string>
     <string name="_0">0</string>
+    <string name="measurement_date">Дата замера</string>
+    <string name="reconnect">Переподключиться</string>
+    <string name="incorrect_date_and_time_of_measurement">Не верная дата и время замера</string>
 </resources>

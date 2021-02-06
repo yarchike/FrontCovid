@@ -1,15 +1,12 @@
 package com.martynov.frontcovid.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.martynov.frontcovid.API_SHARED_FILE
-import com.martynov.frontcovid.AUTHENTICATED_SHARED_KEY
-import com.martynov.frontcovid.App
-import com.martynov.frontcovid.R
+import com.martynov.frontcovid.*
 import com.martynov.frontcovid.dto.MeasurementsResponse
 import com.martynov.frontcovid.dto.TemperatsResponse
 import com.xwray.groupie.GroupAdapter
@@ -42,8 +39,9 @@ class FeedActivity : AppCompatActivity() {
             items_container.adapter = GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
 
         }
-    //    items_container.adapter = GroupAdapter<GroupieViewHolder>().apply { addAll(listOf(getPopularMovies())) }
-
+        fab.setOnClickListener {
+            navigateToCreate()
+        }
 
     }
 
@@ -62,6 +60,11 @@ class FeedActivity : AppCompatActivity() {
             listIteam.add(TemperatsItem(item))
         }
         return listIteam
+    }
+    private fun navigateToCreate() {
+        val intent = Intent(this@FeedActivity, CreateActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }
