@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        tools:text="TextView"
+        android:text="@string/measurement_date"
         app:layout_constraintBottom_toBottomOf="@+id/calendarBtn"
         app:layout_constraintStart_toEndOf="@+id/calendarBtn"
         app:layout_constraintTop_toTopOf="@+id/calendarBtn" />
@@ -26,29 +26,108 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        app:srcCompat="@drawable/ic_calendar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-
-    <TextView
-        android:id="@+id/dateMesText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/measurement_date"
-        app:layout_constraintBottom_toBottomOf="@+id/dateText"
-        app:layout_constraintStart_toEndOf="@+id/dateText"
-        app:layout_constraintTop_toTopOf="@+id/dateText" />
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:srcCompat="@drawable/ic_calendar" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextTextTemperature"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:hint="@string/temperature"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="@+id/calendarBtn"
         app:layout_constraintTop_toBottomOf="@+id/calendarBtn" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/items_container_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextTemperature"
+        tools:ignore="RtlSymmetry" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:text="@string/add"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextTemperature"
+        app:layout_constraintStart_toEndOf="@+id/editTextTextTemperature"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextTemperature" />
+
+    <Button
+        android:id="@+id/btnJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Работа"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnFamily"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/items_container_create" />
+
+    <Button
+        android:id="@+id/btnFamily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Семья"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnJob"
+        app:layout_constraintEnd_toStartOf="@+id/btnFriends"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnJob"
+        app:layout_constraintTop_toTopOf="@+id/btnJob" />
+
+    <Button
+        android:id="@+id/btnFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Друзья"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnFamily"
+        app:layout_constraintEnd_toStartOf="@+id/btnOther"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnFamily"
+        app:layout_constraintTop_toTopOf="@+id/btnFamily" />
+
+    <Button
+        android:id="@+id/btnOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Другое"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnFriends"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnFriends"
+        app:layout_constraintTop_toTopOf="@+id/btnFriends" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/groupLayouts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="290dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnJob">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

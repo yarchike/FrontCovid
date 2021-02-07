@@ -13,4 +13,6 @@
     <string name="measurement_date">Дата замера</string>
     <string name="reconnect">Переподключиться</string>
     <string name="incorrect_date_and_time_of_measurement">Не верная дата и время замера</string>
+    <string name="temperature">Температура</string>
+    <string name="add">Добавить</string>
 </resources>

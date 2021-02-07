@@ -14,6 +14,11 @@ fun convecrStringToDate(dateString: String): Calendar {
     return calendar
 
 }
+fun convecrDateToString(cal : Calendar): String {
+    val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+    return parser.format(cal)
+
+}
 
 
 
