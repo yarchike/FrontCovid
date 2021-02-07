@@ -43,8 +43,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_container_create"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
@@ -66,68 +66,30 @@
         app:layout_constraintStart_toEndOf="@+id/editTextTextTemperature"
         app:layout_constraintTop_toTopOf="@+id/editTextTextTemperature" />
 
-    <Button
-        android:id="@+id/btnJob"
-        android:layout_width="wrap_content"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="Работа"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnFamily"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/items_container_create" />
 
-    <Button
-        android:id="@+id/btnFamily"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Семья"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnJob"
-        app:layout_constraintEnd_toStartOf="@+id/btnFriends"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnJob"
-        app:layout_constraintTop_toTopOf="@+id/btnJob" />
-
-    <Button
-        android:id="@+id/btnFriends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Друзья"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnFamily"
-        app:layout_constraintEnd_toStartOf="@+id/btnOther"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnFamily"
-        app:layout_constraintTop_toTopOf="@+id/btnFamily" />
-
-    <Button
-        android:id="@+id/btnOther"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Другое"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnFriends"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnFriends"
-        app:layout_constraintTop_toTopOf="@+id/btnFriends" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/groupLayouts"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="350dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnJob">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        app:layout_constraintTop_toBottomOf="@+id/tabs" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_check" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

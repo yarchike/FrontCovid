@@ -13,13 +13,12 @@ import com.martynov.frontcovid.repository.OnDataPass
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.fragment_job.view.*
+import kotlinx.android.synthetic.main.fragment_friends.view.*
 
 
-class JobFragment : Fragment() {
+class FriendsFragment : Fragment() {
     val list = ArrayList<Item>()
     var mDataPasser: OnDataPass? = null
-
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -31,29 +30,24 @@ class JobFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewJob = inflater.inflate(R.layout.fragment_job, null)
+        val viewFriends = inflater.inflate(R.layout.fragment_friends, null)
         val bundle = this.arguments
         val empiId = bundle?.getString("empiId")
-        viewJob.btnAddContact.setOnClickListener {
-            val fio = viewJob.editTextFIO.text.toString()
-            val whereDidYouContact = viewJob.editTextWhereDidYouContact.text.toString()
-            val contact = ContactsRequest(empiId.toString(), fio, "Здоров", whereDidYouContact, 1)
+        viewFriends.btnAddContactFriends.setOnClickListener {
+            val fio = viewFriends.editTextFIOFriends.text.toString()
+            val whereDidYouContact = viewFriends.editTextWhereDidYouContactFriends.text.toString()
+            val contact = ContactsRequest(empiId.toString(), fio, "Здоров", whereDidYouContact, 3)
             mDataPasser?.onDataPass(contact)
             list.add(
                 ContactJobItem(
                     contact
                 )
             )
-            viewJob.items_container_job.adapter =
+            viewFriends.items_container_friends.adapter =
                 GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
-            viewJob.editTextFIO.text.clear()
-            viewJob.editTextWhereDidYouContact.text.clear()
-
+            viewFriends.editTextFIOFriends.text.clear()
+            viewFriends.editTextWhereDidYouContactFriends.text.clear()
         }
-
-
-        return viewJob
+        return viewFriends
     }
-
-
 }

@@ -13,47 +13,41 @@ import com.martynov.frontcovid.repository.OnDataPass
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.fragment_job.view.*
+import kotlinx.android.synthetic.main.fragment_other.view.*
 
-
-class JobFragment : Fragment() {
+class OtherFragment : Fragment() {
     val list = ArrayList<Item>()
     var mDataPasser: OnDataPass? = null
-
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
         mDataPasser = activity as OnDataPass?
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewJob = inflater.inflate(R.layout.fragment_job, null)
+        val viewOther = inflater.inflate(R.layout.fragment_other, null)
         val bundle = this.arguments
         val empiId = bundle?.getString("empiId")
-        viewJob.btnAddContact.setOnClickListener {
-            val fio = viewJob.editTextFIO.text.toString()
-            val whereDidYouContact = viewJob.editTextWhereDidYouContact.text.toString()
-            val contact = ContactsRequest(empiId.toString(), fio, "Здоров", whereDidYouContact, 1)
+        viewOther.btnAddContactOther.setOnClickListener {
+            val fio = viewOther.editTextFIOOther.text.toString()
+            val whereDidYouContact = viewOther.editTextWhereDidYouContactOther.text.toString()
+            val contact = ContactsRequest(empiId.toString(), fio, "Здоров", whereDidYouContact, 4)
             mDataPasser?.onDataPass(contact)
             list.add(
                 ContactJobItem(
                     contact
                 )
             )
-            viewJob.items_container_job.adapter =
+            viewOther.items_container_other.adapter =
                 GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
-            viewJob.editTextFIO.text.clear()
-            viewJob.editTextWhereDidYouContact.text.clear()
-
+            viewOther.editTextFIOOther.text.clear()
+            viewOther.editTextWhereDidYouContactOther.text.clear()
         }
-
-
-        return viewJob
+        return viewOther
     }
-
-
 }

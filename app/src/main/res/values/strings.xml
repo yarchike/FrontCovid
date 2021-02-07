@@ -15,4 +15,11 @@
     <string name="incorrect_date_and_time_of_measurement">Не верная дата и время замера</string>
     <string name="temperature">Температура</string>
     <string name="add">Добавить</string>
+    <string name="where_did_they_contact">Где контактировали, место контакта</string>
+    <string name="fio_contact">ФИО контакта</string>
+    <string name="add_contackt">Добавить контакт</string>
+    <string name="error">Ошибка</string>
+    <string name="measurements">Замеры</string>
+    <string name="contackt">Контакты</string>
+    <string name="settings">Настройки</string>
 </resources>

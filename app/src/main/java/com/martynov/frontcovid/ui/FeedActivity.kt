@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.martynov.frontcovid.*
 import com.martynov.frontcovid.dto.MeasurementsResponse
@@ -22,6 +25,8 @@ class FeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
+        setSupportActionBar(findViewById<Toolbar>(R.id.toolbar))
+        supportActionBar!!.setSubtitle(getString(R.string.measurements))
 
         lifecycleScope.launch {
             val loadMeasurements =
@@ -45,6 +50,19 @@ class FeedActivity : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when(id){
+           R.id.friends -> navigateToFriends()
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     fun getMessasureIteam(measurementsResponse: MeasurementsResponse): Item {
         return MainCardContainer(measurementsResponse.date, measurementsResponse.contacts.size.toString(), ::onItemClick, getItemTemperatur(measurementsResponse.temperats))
     }
@@ -64,7 +82,10 @@ class FeedActivity : AppCompatActivity() {
     private fun navigateToCreate() {
         val intent = Intent(this@FeedActivity, CreateActivity::class.java)
         startActivity(intent)
-        finish()
+    }
+    private fun navigateToFriends() {
+        val intent = Intent(this@FeedActivity, ContacktActivity::class.java)
+        startActivity(intent)
     }
 
 }

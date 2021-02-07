@@ -17,7 +17,7 @@
             >
 
             <TextView
-                android:id="@+id/textViewFIO"
+                android:id="@+id/textViewFIOFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -27,52 +27,52 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextFIO"
+                android:id="@+id/editTextFIOFriends"
                 android:layout_width="400dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="@+id/textViewFIO"
-                app:layout_constraintTop_toBottomOf="@+id/textViewFIO" />
+                app:layout_constraintStart_toStartOf="@+id/textViewFIOFriends"
+                app:layout_constraintTop_toBottomOf="@+id/textViewFIOFriends" />
 
             <TextView
-                android:id="@+id/textViewWhereDidYouContact"
+                android:id="@+id/textViewWhereDidYouContactFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/where_did_they_contact"
-                app:layout_constraintStart_toStartOf="@+id/editTextFIO"
-                app:layout_constraintTop_toBottomOf="@+id/editTextFIO" />
+                app:layout_constraintStart_toStartOf="@+id/editTextFIOFriends"
+                app:layout_constraintTop_toBottomOf="@+id/editTextFIOFriends" />
 
             <EditText
-                android:id="@+id/editTextWhereDidYouContact"
+                android:id="@+id/editTextWhereDidYouContactFriends"
                 android:layout_width="400dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="@+id/textViewWhereDidYouContact"
-                app:layout_constraintTop_toBottomOf="@+id/textViewWhereDidYouContact" />
+                app:layout_constraintStart_toStartOf="@+id/textViewWhereDidYouContactFriends"
+                app:layout_constraintTop_toBottomOf="@+id/textViewWhereDidYouContactFriends" />
 
             <Button
-                android:id="@+id/btnAddContact"
+                android:id="@+id/btnAddContactFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/add_contackt"
-                app:layout_constraintStart_toStartOf="@+id/editTextWhereDidYouContact"
-                app:layout_constraintTop_toBottomOf="@+id/editTextWhereDidYouContact" />
+                app:layout_constraintStart_toStartOf="@+id/editTextWhereDidYouContactFriends"
+                app:layout_constraintTop_toBottomOf="@+id/editTextWhereDidYouContactFriends" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/items_container_job"
+                android:id="@+id/items_container_friends"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnAddContact" />
+                app:layout_constraintTop_toBottomOf="@+id/btnAddContactFriends" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

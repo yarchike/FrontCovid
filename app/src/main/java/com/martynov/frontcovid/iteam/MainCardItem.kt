@@ -22,8 +22,6 @@ class MainCardContainer(
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         val cal = convecrStringToDate(date)
         val dateComplite = "${cal.get(Calendar.DAY_OF_MONTH)} ${convertMount(cal.get(Calendar.MONTH))}"
-        Log.d("My", dateComplite)
-        Log.d("My", contactCount.toString())
         viewHolder.textDateView.text = dateComplite
         viewHolder.textContaktCount.text = contactCount
         viewHolder.items_container.adapter = GroupAdapter<GroupieViewHolder>().apply { addAll(items) }

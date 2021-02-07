@@ -2,6 +2,7 @@ package ru.androidschool.groupiesample.items
 
 import com.martynov.frontcovid.R
 import com.martynov.frontcovid.convecrStringToDate
+import com.martynov.frontcovid.dto.TemperatsRequest
 import com.martynov.frontcovid.dto.TemperatsResponse
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
