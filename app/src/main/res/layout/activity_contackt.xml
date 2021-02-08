@@ -6,20 +6,92 @@
     android:layout_height="match_parent"
     tools:context=".ui.ContacktActivity">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/tollbar" />
+
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@mipmap/ic_launcher_foreground"
-        tools:layout_editor_absoluteX="81dp" />
+        android:id="@+id/btnWork"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/textFamily"
+        app:layout_constraintEnd_toStartOf="@+id/btnFriends"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/icon_work" />
+
+    <ImageButton
+        android:id="@+id/btnFriends"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/textOther"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnWork"
+        app:srcCompat="@drawable/icon_friends" />
+
+    <ImageButton
+        android:id="@+id/btnFamily"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="200dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnOther"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/icon_family" />
+
+    <ImageButton
+        android:id="@+id/btnOther"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="200dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnFamily"
+        app:srcCompat="@drawable/icon_other" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textWork"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="75dp" />
+        android:text="@string/work"
+        app:layout_constraintBottom_toTopOf="@+id/btnWork"
+        app:layout_constraintEnd_toEndOf="@+id/btnWork"
+        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintStart_toStartOf="@+id/btnWork" />
+
+    <TextView
+        android:id="@+id/textFiends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/friends"
+        app:layout_constraintBottom_toTopOf="@+id/btnFriends"
+        app:layout_constraintEnd_toEndOf="@+id/btnFriends"
+        app:layout_constraintStart_toStartOf="@+id/btnFriends" />
+
+    <TextView
+        android:id="@+id/textFamily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/family"
+        app:layout_constraintBottom_toTopOf="@+id/btnFamily"
+        app:layout_constraintEnd_toEndOf="@+id/btnFamily"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="@+id/btnFamily" />
+
+    <TextView
+        android:id="@+id/textOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Другие"
+        app:layout_constraintBottom_toTopOf="@+id/btnOther"
+        app:layout_constraintEnd_toEndOf="@+id/btnOther"
+        app:layout_constraintStart_toStartOf="@+id/btnOther" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
