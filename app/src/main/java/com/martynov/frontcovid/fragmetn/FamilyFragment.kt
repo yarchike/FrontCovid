@@ -25,25 +25,30 @@ class FamilyFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
+        var state = getString(R.string.healthy)
         val viewFamaly = inflater.inflate(R.layout.fragment_family, null)
         val bundle = this.arguments
         val empiId = bundle?.getString("empiId")
+        viewFamaly.checkBoxStateFamaly.isChecked = true
         viewFamaly.btnAddContactFamaly.setOnClickListener {
+            if (!viewFamaly.checkBoxStateFamaly.isChecked) {
+                state = getString(R.string.sick)
+            }
             val fio = viewFamaly.editTextFIOFamaly.text.toString()
             val whereDidYouContact = viewFamaly.editTextWhereDidYouContactFamaly.text.toString()
-            val contact = ContactsRequest(empiId.toString(), fio, "Здоров", whereDidYouContact, 2)
+            val contact = ContactsRequest(empiId.toString(), fio, state, whereDidYouContact, 2)
             mDataPasser?.onDataPass(contact)
             list.add(
-                ContactJobItem(
-                    contact
-                )
+                    ContactJobItem(
+                            contact
+                    )
             )
             viewFamaly.items_container_family.adapter =
-                GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
+                    GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
             viewFamaly.editTextFIOFamaly.text.clear()
             viewFamaly.editTextWhereDidYouContactFamaly.text.clear()
         }

@@ -92,4 +92,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_check" />
 
+    <ImageButton
+        android:id="@+id/btnClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dateText"
+        app:layout_constraintStart_toEndOf="@+id/dateText"
+        app:layout_constraintTop_toTopOf="@+id/dateText"
+        app:srcCompat="@drawable/ic_clock" />
+
+    <TextView
+        android:id="@+id/textClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/measurement_time"
+        app:layout_constraintBottom_toBottomOf="@+id/btnClock"
+        app:layout_constraintStart_toEndOf="@+id/btnClock"
+        app:layout_constraintTop_toTopOf="@+id/btnClock" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

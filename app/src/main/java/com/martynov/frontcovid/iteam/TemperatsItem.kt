@@ -15,7 +15,7 @@ class TemperatsItem(private val content: TemperatsResponse) : Item() {
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         val cal = convecrStringToDate(content.time)
-        val time = "${cal.get(Calendar.HOUR)}: ${cal.get(Calendar.MINUTE)}"
+        val time = "${cal.get(Calendar.HOUR_OF_DAY)}: ${cal.get(Calendar.MINUTE)}"
         viewHolder.textTemperature.text = content.temperat.toString()
         viewHolder.textDate.text = time
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.coroutines.launch
 import ru.androidschool.groupiesample.items.*
+import java.io.IOException
 
 
 class FeedActivity : AppCompatActivity() {
@@ -29,26 +31,30 @@ class FeedActivity : AppCompatActivity() {
         supportActionBar!!.setSubtitle(getString(R.string.measurements))
 
         lifecycleScope.launch {
-            val loadMeasurements =
-                    getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(
-                            AUTHENTICATED_SHARED_KEY,
-                            ""
-                    )
-                            ?.let { App.repository.getMeasurements(it) }
-            for (iteam in loadMeasurements?.body()!!) {
-                list.add(getMessasureIteam(iteam))
+            try {
+                val loadMeasurements =
+                        getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(
+                                AUTHENTICATED_SHARED_KEY,
+                                ""
+                        )
+                                ?.let { App.repository.getMeasurements(it) }
+                for (iteam in loadMeasurements?.body()!!) {
+                    list.add(getMessasureIteam(iteam))
+                }
+
+
+
+                items_container.adapter = GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
+            } catch (e: IOException) {
+                Toast.makeText(this@FeedActivity, getString(R.string.falien_connect), Toast.LENGTH_LONG).show()
             }
-
-
-
-            items_container.adapter = GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
 
         }
         fab.setOnClickListener {
             navigateToCreate()
         }
-
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -57,8 +63,8 @@ class FeedActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        when(id){
-           R.id.friends -> navigateToFriends()
+        when (id) {
+            R.id.friends -> navigateToFriends()
         }
         return super.onOptionsItemSelected(item);
     }
@@ -69,20 +75,22 @@ class FeedActivity : AppCompatActivity() {
 
 
     fun onItemClick(url: String) {
-        Log.d("My","act $url")
+        Log.d("My", "act $url")
     }
 
-    fun getItemTemperatur(list: ArrayList<TemperatsResponse>): List<Item>{
+    fun getItemTemperatur(list: ArrayList<TemperatsResponse>): List<Item> {
         var listIteam = ArrayList<Item>()
         for (item in list) {
             listIteam.add(TemperatsItem(item))
         }
         return listIteam
     }
+
     private fun navigateToCreate() {
         val intent = Intent(this@FeedActivity, CreateActivity::class.java)
         startActivity(intent)
     }
+
     private fun navigateToFriends() {
         val intent = Intent(this@FeedActivity, ContacktActivity::class.java)
         startActivity(intent)

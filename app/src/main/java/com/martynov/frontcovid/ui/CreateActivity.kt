@@ -8,14 +8,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.martynov.frontcovid.API_SHARED_FILE
-import com.martynov.frontcovid.AUTHENTICATED_SHARED_KEY
-import com.martynov.frontcovid.App
-import com.martynov.frontcovid.R
+import com.martynov.frontcovid.*
 import com.martynov.frontcovid.adapter.MyPagerAdapter
 import com.martynov.frontcovid.dto.ContactsRequest
 import com.martynov.frontcovid.dto.MeasurementsRequest
@@ -29,8 +25,6 @@ import kotlinx.android.synthetic.main.activity_create.*
 import kotlinx.android.synthetic.main.item_measurements.*
 import kotlinx.coroutines.launch
 import ru.androidschool.groupiesample.items.TemperatsItem
-import java.io.IOException
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -46,19 +40,26 @@ class CreateActivity : AppCompatActivity(), OnDataPass {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
         val empiId = getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(
-            AUTHENTICATED_SHARED_KEY, ""
+                AUTHENTICATED_SHARED_KEY, ""
         )
         val bundle = Bundle()
         bundle.putString(
-            "empiId", empiId
+                "empiId", empiId
         )
+        dateText.text = "${dateAndTime.get(Calendar.DAY_OF_MONTH)}  ${convertMount(dateAndTime.get(Calendar.MONTH))}"
+
+
 
 
         calendarBtn.setOnClickListener {
-            setTime()
             setDate()
-            setDateTime()
+            setDateText()
         }
+        btnClock.setOnClickListener {
+            setTime()
+            setTimeText()
+        }
+
         btnAdd.setOnClickListener {
             addTemperature()
         }
@@ -68,15 +69,15 @@ class CreateActivity : AppCompatActivity(), OnDataPass {
 
         fabSave.setOnClickListener {
             lifecycleScope.launch {
-                try{
-                    val measurementsRequest = MeasurementsRequest(empiId.toString(), "", listContacts, listTemaperature.get(0).time,listTemaperature)
-                    val result = App.repository.setMeasurements( measurementsRequest)
-                    if(result.body()?.success == true){
+                try {
+                    val measurementsRequest = MeasurementsRequest(empiId.toString(), "", listContacts, listTemaperature.get(0).time, listTemaperature)
+                    val result = App.repository.setMeasurements(measurementsRequest)
+                    if (result.body()?.success == true) {
                         navigateToFeed()
-                    }else{
+                    } else {
                         Toast.makeText(this@CreateActivity, getString(R.string.falien_connect), Toast.LENGTH_LONG).show()
                     }
-                }catch (e: Exception){
+                } catch (e: Exception) {
                     Toast.makeText(this@CreateActivity, getString(R.string.falien_connect), Toast.LENGTH_LONG).show()
                 }
             }
@@ -84,20 +85,20 @@ class CreateActivity : AppCompatActivity(), OnDataPass {
     }
 
     private fun addTemperature() {
-        try{
+        try {
             val temperatsRequest = TemperatsRequest(
-                editTextTextTemperature.text.toString().toDouble(), dateText.text.toString()
+                    editTextTextTemperature.text.toString().toDouble(), convecrDateToString(dateAndTime)
             )
             listTemaperature.add(temperatsRequest)
             list.add(
-                TemperatsItem(
-                    TemperatsResponse(temperatsRequest.temperat, temperatsRequest.time)
-                )
+                    TemperatsItem(
+                            TemperatsResponse(temperatsRequest.temperat, temperatsRequest.time)
+                    )
             )
 
             items_container_create.adapter =
-                GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
-        }catch (e :Exception){
+                    GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
+        } catch (e: Exception) {
             Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
         }
 
@@ -108,35 +109,34 @@ class CreateActivity : AppCompatActivity(), OnDataPass {
     private fun setDate() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             DatePickerDialog(
-                this@CreateActivity, OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                    dateAndTime.set(Calendar.YEAR, year)
-                    dateAndTime.set(Calendar.MONTH, monthOfYear)
-                    dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                },
-                dateAndTime[Calendar.YEAR],
-                dateAndTime[Calendar.MONTH],
-                dateAndTime[Calendar.DAY_OF_MONTH]
+                    this@CreateActivity, OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                dateAndTime.set(Calendar.YEAR, year)
+                dateAndTime.set(Calendar.MONTH, monthOfYear)
+                dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            },
+                    dateAndTime[Calendar.YEAR],
+                    dateAndTime[Calendar.MONTH],
+                    dateAndTime[Calendar.DAY_OF_MONTH]
             )
-                .show()
+                    .show()
         }
     }
 
     fun setTime() {
         TimePickerDialog(
-            this, OnTimeSetListener { view, hourOfDay, minute ->
-                dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                dateAndTime.set(Calendar.MINUTE, minute)
+                this, OnTimeSetListener { view, hourOfDay, minute ->
+            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            dateAndTime.set(Calendar.MINUTE, minute)
 
-            },
-            dateAndTime[Calendar.HOUR_OF_DAY],
-            dateAndTime[Calendar.MINUTE],
-            true
+        },
+                dateAndTime[Calendar.HOUR_OF_DAY],
+                dateAndTime[Calendar.MINUTE],
+                true
         ).show()
     }
 
-    fun setDateTime() {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-        dateText.setText(dateFormat.format(dateAndTime.timeInMillis))
+    fun setDateText() {
+        dateText.text = "${dateAndTime.get(Calendar.DAY_OF_MONTH)}  ${convertMount(dateAndTime.get(Calendar.MONTH))}"
     }
 
     override fun onDataPass(data: ContactsRequest?) {
@@ -144,10 +144,15 @@ class CreateActivity : AppCompatActivity(), OnDataPass {
             listContacts.add(data)
         }
     }
+
     private fun navigateToFeed() {
         val intent = Intent(this@CreateActivity, FeedActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun setTimeText() {
+        textClock.text = "${dateAndTime.get(Calendar.HOUR_OF_DAY)}: ${dateAndTime.get(Calendar.MINUTE)}"
     }
 }
 

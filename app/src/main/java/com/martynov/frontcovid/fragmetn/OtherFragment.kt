@@ -26,25 +26,30 @@ class OtherFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
+        var state = getString(R.string.healthy)
         val viewOther = inflater.inflate(R.layout.fragment_other, null)
         val bundle = this.arguments
         val empiId = bundle?.getString("empiId")
+        viewOther.checkBoxStateOther.isChecked = true
         viewOther.btnAddContactOther.setOnClickListener {
+            if (!viewOther.checkBoxStateOther.isChecked) {
+                state = getString(R.string.sick)
+            }
             val fio = viewOther.editTextFIOOther.text.toString()
             val whereDidYouContact = viewOther.editTextWhereDidYouContactOther.text.toString()
-            val contact = ContactsRequest(empiId.toString(), fio, "Здоров", whereDidYouContact, 4)
+            val contact = ContactsRequest(empiId.toString(), fio, state, whereDidYouContact, 4)
             mDataPasser?.onDataPass(contact)
             list.add(
-                ContactJobItem(
-                    contact
-                )
+                    ContactJobItem(
+                            contact
+                    )
             )
             viewOther.items_container_other.adapter =
-                GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
+                    GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
             viewOther.editTextFIOOther.text.clear()
             viewOther.editTextWhereDidYouContactOther.text.clear()
         }

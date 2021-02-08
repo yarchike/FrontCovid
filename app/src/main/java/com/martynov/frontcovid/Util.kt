@@ -8,7 +8,6 @@ import java.util.*
 fun convecrStringToDate(dateString: String): Calendar {
     val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
     val date: Date = parser.parse(dateString)
-    println(date.toString())
     var calendar = Calendar.getInstance()
     calendar.timeInMillis = date.time
     return calendar
@@ -16,7 +15,9 @@ fun convecrStringToDate(dateString: String): Calendar {
 }
 fun convecrDateToString(cal : Calendar): String {
     val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-    return parser.format(cal)
+    val date = Date(cal.timeInMillis)
+    val text = parser.format(date)
+    return text
 
 }
 

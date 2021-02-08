@@ -27,25 +27,31 @@ class JobFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
+        var state = getString(R.string.healthy)
         val viewJob = inflater.inflate(R.layout.fragment_job, null)
         val bundle = this.arguments
         val empiId = bundle?.getString("empiId")
+        viewJob.checkBoxState.isChecked = true
+
         viewJob.btnAddContact.setOnClickListener {
+            if (!viewJob.checkBoxState.isChecked) {
+                state = getString(R.string.sick)
+            }
             val fio = viewJob.editTextFIO.text.toString()
             val whereDidYouContact = viewJob.editTextWhereDidYouContact.text.toString()
-            val contact = ContactsRequest(empiId.toString(), fio, "Здоров", whereDidYouContact, 1)
+            val contact = ContactsRequest(empiId.toString(), fio, state, whereDidYouContact, 1)
             mDataPasser?.onDataPass(contact)
             list.add(
-                ContactJobItem(
-                    contact
-                )
+                    ContactJobItem(
+                            contact
+                    )
             )
             viewJob.items_container_job.adapter =
-                GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
+                    GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
             viewJob.editTextFIO.text.clear()
             viewJob.editTextWhereDidYouContact.text.clear()
 

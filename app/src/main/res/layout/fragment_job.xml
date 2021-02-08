@@ -62,7 +62,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/add_contackt"
                 app:layout_constraintStart_toStartOf="@+id/editTextWhereDidYouContact"
-                app:layout_constraintTop_toBottomOf="@+id/editTextWhereDidYouContact" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxState" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/items_container_job"
@@ -73,6 +73,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnAddContact" />
+
+            <CheckBox
+                android:id="@+id/checkBoxState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/healthy"
+                app:layout_constraintStart_toStartOf="@+id/editTextWhereDidYouContact"
+                app:layout_constraintTop_toBottomOf="@+id/editTextWhereDidYouContact" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

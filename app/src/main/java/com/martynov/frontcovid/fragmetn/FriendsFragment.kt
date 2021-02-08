@@ -26,25 +26,30 @@ class FriendsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
+        var state = getString(R.string.healthy)
         val viewFriends = inflater.inflate(R.layout.fragment_friends, null)
         val bundle = this.arguments
         val empiId = bundle?.getString("empiId")
+        viewFriends.checkBoxStateFriends.isChecked = true
         viewFriends.btnAddContactFriends.setOnClickListener {
+            if (!viewFriends.checkBoxStateFriends.isChecked) {
+                state = getString(R.string.sick)
+            }
             val fio = viewFriends.editTextFIOFriends.text.toString()
             val whereDidYouContact = viewFriends.editTextWhereDidYouContactFriends.text.toString()
-            val contact = ContactsRequest(empiId.toString(), fio, "Здоров", whereDidYouContact, 3)
+            val contact = ContactsRequest(empiId.toString(), fio, state, whereDidYouContact, 3)
             mDataPasser?.onDataPass(contact)
             list.add(
-                ContactJobItem(
-                    contact
-                )
+                    ContactJobItem(
+                            contact
+                    )
             )
             viewFriends.items_container_friends.adapter =
-                GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
+                    GroupAdapter<GroupieViewHolder>().apply { addAll(list) }
             viewFriends.editTextFIOFriends.text.clear()
             viewFriends.editTextWhereDidYouContactFriends.text.clear()
         }
