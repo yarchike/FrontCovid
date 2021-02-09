@@ -65,6 +65,7 @@ class FeedActivity : AppCompatActivity() {
         val id = item.itemId
         when (id) {
             R.id.friends -> navigateToFriends()
+            R.id.settings -> navigateToSettings()
         }
         return super.onOptionsItemSelected(item);
     }
@@ -93,6 +94,10 @@ class FeedActivity : AppCompatActivity() {
 
     private fun navigateToFriends() {
         val intent = Intent(this@FeedActivity, ContacktActivity::class.java)
+        startActivity(intent)
+    }
+    private fun navigateToSettings() {
+        val intent = Intent(this@FeedActivity, SettingsActivity::class.java)
         startActivity(intent)
     }
 

@@ -29,4 +29,7 @@
     <string name="friends">Друзья</string>
     <string name="family">Семья</string>
     <string name="contacts">Контакты</string>
+    <string name="save">Сохранить</string>
+    <string name="saved_successfully">Успешно сохранено</string>
+    <string name="exit">Выход</string>
 </resources>

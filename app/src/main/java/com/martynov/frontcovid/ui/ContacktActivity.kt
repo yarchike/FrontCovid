@@ -1,5 +1,6 @@
 package com.martynov.frontcovid.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,16 +17,16 @@ class ContacktActivity : AppCompatActivity() {
         val clickListener = View.OnClickListener {
             when(it.id){
                 R.id.btnWork ->{
-
+                    navigateToGroup(1)
                 }
                 R.id.btnFamily ->{
-
+                    navigateToGroup(2)
                 }
                 R.id.btnFriends ->{
-
+                    navigateToGroup(3)
                 }
                 R.id.btnOther -> {
-
+                    navigateToGroup(4)
                 }
             }
         }
@@ -33,5 +34,10 @@ class ContacktActivity : AppCompatActivity() {
         btnFamily.setOnClickListener(clickListener)
         btnFriends.setOnClickListener(clickListener)
         btnOther.setOnClickListener(clickListener)
+    }
+    private fun navigateToGroup(id: Int) {
+        val intent = Intent(this@ContacktActivity, ContacktGroupActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
     }
 }

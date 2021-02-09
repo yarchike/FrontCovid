@@ -16,8 +16,8 @@ class NetworkRepository(private val api: Api) : Repository {
         api.setMeasurements(measurementsRequest)
 
 
-    override suspend fun getContactFromGroup(contactsRequest: ContactsRequest): Response<ContactResponse> =
-        api.getContactFromGroup(contactsRequest)
+    override suspend fun getContactFromGroup(contactRequest: ContactRequest): Response<ContactResponse> =
+        api.getContactFromGroup(contactRequest)
 
     override suspend fun editContact(contactEditingRequest: ContactEditingRequest): Response<com.martynov.frontcovid.dto.Response> =
         api.editContact(contactEditingRequest)

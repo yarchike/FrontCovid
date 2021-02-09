@@ -16,7 +16,7 @@ interface Api {
     suspend fun setMeasurements(@Body measurementsRequest: MeasurementsRequest): Response<com.martynov.frontcovid.dto.Response>
 
     @POST("/api/Spisconts")
-    suspend fun getContactFromGroup(@Body contactsRequest: ContactsRequest):Response<ContactResponse>
+    suspend fun getContactFromGroup(@Body contactRequest: ContactRequest):Response<ContactResponse>
     @PUT("/api/Conts")
     suspend fun editContact(@Body contactEditingRequest: ContactEditingRequest):Response<com.martynov.frontcovid.dto.Response>
 }
