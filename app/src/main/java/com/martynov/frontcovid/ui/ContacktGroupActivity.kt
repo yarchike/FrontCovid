@@ -76,6 +76,7 @@ class ContacktGroupActivity : AppCompatActivity(), OnData {
     private fun loadBase() {
         lifecycleScope.launch {
             try {
+                listData.clear()
                 list.clear()
                 val result = empiId?.let { idGroup?.let { it1 -> ContactRequest(it, it1) } }
                         ?.let { App.repository.getContactFromGroup(it) }

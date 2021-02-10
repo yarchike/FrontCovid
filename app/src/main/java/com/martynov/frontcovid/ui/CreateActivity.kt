@@ -75,18 +75,27 @@ class CreateActivity : AppCompatActivity(), OnDataPass {
 
 
         fabSave.setOnClickListener {
-            lifecycleScope.launch {
-                try {
-                    val measurementsRequest = MeasurementsRequest(empiId.toString(), "", listContacts, listTemaperature.get(0).time, listTemaperature)
-                    val result = App.repository.setMeasurements(measurementsRequest)
-                    if (result.body()?.success == true) {
-                        navigateToFeed()
-                    } else {
-                        Toast.makeText(this@CreateActivity, getString(R.string.falien_connect), Toast.LENGTH_LONG).show()
-                    }
-                } catch (e: Exception) {
-                    Toast.makeText(this@CreateActivity, getString(R.string.falien_connect), Toast.LENGTH_LONG).show()
+            addingMeasurement(empiId)
+        }
+    }
+
+    private fun addingMeasurement(empiId: String?) {
+        lifecycleScope.launch {
+            try {
+                val measurementsRequest = MeasurementsRequest(empiId.toString(), "", listContacts, listTemaperature.get(0).time, listTemaperature)
+                val result = App.repository.setMeasurements(measurementsRequest)
+                if (result.body()?.success == true) {
+                    navigateToFeed()
+                } else {
+                    Toast.makeText(this@CreateActivity, getString(R.string.falien_connect), Toast.LENGTH_SHORT).show()
                 }
+            } catch (e: Exception) {
+                if (listTemaperature.size < 0) {
+                    Toast.makeText(this@CreateActivity, getString(R.string.falien_connect), Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@CreateActivity, getString(R.string.temperature_measurement_not_added), Toast.LENGTH_SHORT).show()
+                }
+
             }
         }
     }
@@ -108,7 +117,6 @@ class CreateActivity : AppCompatActivity(), OnDataPass {
                             TemperatsItem(
                                     TemperatsResponse(temperatsRequest.temperat, temperatsRequest.time)
                             )
-
                     )
                     items_container_create.adapter =
                             GroupAdapter<GroupieViewHolder>().apply { addAll(list) }

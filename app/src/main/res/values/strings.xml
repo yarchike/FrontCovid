@@ -34,4 +34,5 @@
     <string name="exit">Выход</string>
     <string name="other">Другие</string>
     <string name="measurement_creation">Создание замера</string>
+    <string name="temperature_measurement_not_added">Не добавлен замер температуры</string>
 </resources>
