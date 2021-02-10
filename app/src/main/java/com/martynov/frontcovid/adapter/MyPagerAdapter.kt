@@ -17,14 +17,14 @@ class MyPagerAdapter(fm: FragmentManager, val bundle: Bundle) : FragmentPagerAda
         val familyFragment = FamilyFragment()
         val friendsFragment = FriendsFragment()
         val otherFragment = OtherFragment()
-        when (position){
-            0 ->  jobfragment.arguments = bundle
+        when (position) {
+            0 -> jobfragment.arguments = bundle
             1 -> familyFragment.arguments = bundle
             2 -> friendsFragment.arguments = bundle
             else -> otherFragment.arguments = bundle
         }
         return when (position) {
-            0 ->  jobfragment
+            0 -> jobfragment
             1 -> familyFragment
             2 -> friendsFragment
             else -> otherFragment
@@ -42,10 +42,10 @@ class MyPagerAdapter(fm: FragmentManager, val bundle: Bundle) : FragmentPagerAda
         return when (position) {
             0 -> "Работа"
             1 -> "Семья"
-            2 ->  "Друзья"
+            2 -> "Друзья"
             else -> "Другое"
         }
-        }
+    }
 
 
 }

@@ -11,6 +11,13 @@ tools:context=".ui.FeedActivity">
     <include
         android:id="@+id/include"
         layout="@layout/tollbar" />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_container"
@@ -19,6 +26,7 @@ tools:context=".ui.FeedActivity">
         android:layout_marginTop="55dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/include" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

@@ -7,20 +7,20 @@ import retrofit2.Response
 
 class NetworkRepository(private val api: Api) : Repository {
     override suspend fun authenticate(userRequest: UserRequest): Response<UserResponse> =
-        api.auth(userRequest)
+            api.auth(userRequest)
 
     override suspend fun getMeasurements(id: String): Response<List<MeasurementsResponse>> =
-        api.getMeasurements(id)
+            api.getMeasurements(id)
 
     override suspend fun setMeasurements(measurementsRequest: MeasurementsRequest): Response<com.martynov.frontcovid.dto.Response> =
-        api.setMeasurements(measurementsRequest)
+            api.setMeasurements(measurementsRequest)
 
 
     override suspend fun getContactFromGroup(contactRequest: ContactRequest): Response<ContactResponse> =
-        api.getContactFromGroup(contactRequest)
+            api.getContactFromGroup(contactRequest)
 
     override suspend fun editContact(contactEditingRequest: ContactEditingRequest): Response<com.martynov.frontcovid.dto.Response> =
-        api.editContact(contactEditingRequest)
+            api.editContact(contactEditingRequest)
 
 
 }

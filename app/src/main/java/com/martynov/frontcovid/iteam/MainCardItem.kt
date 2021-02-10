@@ -11,10 +11,10 @@ import kotlinx.android.synthetic.main.item_measurements.*
 import java.util.*
 
 class MainCardContainer(
-    private val date: String = "",
-    private val contactCount: String? = "",
-    private val onClick: (url: String) -> Unit,
-    private val items: List<Item>
+        private val date: String = "",
+        private val contactCount: String? = "",
+        private val onClick: (position: Int) -> Unit,
+        private val items: List<Item>
 ) : Item() {
 
     override fun getLayout() = R.layout.item_measurements
@@ -25,12 +25,9 @@ class MainCardContainer(
         viewHolder.textDateView.text = dateComplite
         viewHolder.textContaktCount.text = contactCount
         viewHolder.items_container.adapter = GroupAdapter<GroupieViewHolder>().apply { addAll(items) }
-        viewHolder.textContaktCount.setOnClickListener {
-            Log.d("My", "holder $position")
-            onClick(position.toString())
-        }
         viewHolder.itemView.setOnClickListener {
             Log.d("My", "iteam $position")
+            onClick(position)
         }
     }
 }

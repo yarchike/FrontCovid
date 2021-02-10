@@ -32,4 +32,6 @@
     <string name="save">Сохранить</string>
     <string name="saved_successfully">Успешно сохранено</string>
     <string name="exit">Выход</string>
+    <string name="other">Другие</string>
+    <string name="measurement_creation">Создание замера</string>
 </resources>

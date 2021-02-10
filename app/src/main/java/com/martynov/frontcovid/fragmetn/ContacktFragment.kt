@@ -21,9 +21,9 @@ class ContacktFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val bundle = this.arguments
         val fio = bundle?.getString("fio")
@@ -33,14 +33,14 @@ class ContacktFragment : Fragment() {
         val viewContackt = inflater.inflate(R.layout.fragment_contackt, null)
         viewContackt.editTextFIOContackt.setText(fio)
         viewContackt.checkBoxStateContackt.isChecked = status.equals("Здоров")
-        viewContackt.btnAddContactContackt.setOnClickListener{
+        viewContackt.btnAddContactContackt.setOnClickListener {
             val fioEnd = viewContackt.editTextFIOContackt.text.toString()
             val statusEnd =
-                if(viewContackt.checkBoxStateContackt.isChecked){
-                    "Здоров"
-                }else{
-                    "Болен"
-                }
+                    if (viewContackt.checkBoxStateContackt.isChecked) {
+                        "Здоров"
+                    } else {
+                        "Болен"
+                    }
             if (contid != null) {
                 dataPasser?.onDataPass(contid, fioEnd, statusEnd)
                 activity?.onBackPressed();

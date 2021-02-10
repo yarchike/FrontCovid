@@ -5,6 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ContacktGroupActivity">
+    <include
+        android:id="@+id/include"
+        layout="@layout/tollbar" />
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/itemFragmentContackt"
@@ -17,17 +22,22 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/tollbar" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/contactGroupContant"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainerContackt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemFragmentContackt" />
+        app:layout_constraintTop_toBottomOf="@+id/itemFragmentContackt">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contactGroupContant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemFragmentContackt" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

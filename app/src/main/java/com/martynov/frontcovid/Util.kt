@@ -13,14 +13,14 @@ fun convecrStringToDate(dateString: String): Calendar {
     return calendar
 
 }
-fun convecrDateToString(cal : Calendar): String {
+
+fun convecrDateToString(cal: Calendar): String {
     val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
     val date = Date(cal.timeInMillis)
     val text = parser.format(date)
     return text
 
 }
-
 
 
 fun convertMount(mount: Int): String {
